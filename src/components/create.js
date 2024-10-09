@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-import { FormField, Button, Form } from 'semantic-ui-react'
+import React, { useState } from 'react';
+import { Form, Button } from 'semantic-ui-react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Create() {
     const [firstName, setFirstName] = useState('');
@@ -9,6 +10,9 @@ export default function Create() {
     const [city, setCity] = useState('');
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
+    
+    const navigate = useNavigate();
+
     const postData = () => {
         console.log(firstName);
         console.log(lastName);
@@ -17,7 +21,10 @@ export default function Create() {
         console.log(city);
         console.log(phone);
         console.log(email);
-    }
+
+        navigate('/read');
+    };
+
     return (
         <Form>
             <Form.Field>
@@ -48,8 +55,7 @@ export default function Create() {
                 <label>Email</label>
                 <input placeholder='Email' onChange={(e) => setEmail(e.target.value)} />
             </Form.Field>
-            <Button onClick={postData} type='submit'>Submit</Button>
+            <Button onClick={postData} type='button'>Submit</Button>
         </Form>
-    )
+    );
 }
-
